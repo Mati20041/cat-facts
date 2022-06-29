@@ -3,7 +3,8 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import formatDate from 'date-fns/format';
 import parseDate from 'date-fns/parseISO';
-import { CatFactDto, catService } from './CatService';
+import { CatFactDto } from '@cat-facts/shared';
+import { catService } from './CatService';
 import { Spinner } from '../Spinner';
 import { StyledCard } from '../StyledParts';
 

@@ -1,15 +1,15 @@
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
+import { UserDto } from '@cat-facts/shared';
 import {
   UserEntity,
   UsernameNotUniqueError,
-  userRepository,
+  userRepository as defaultUserRepository,
   UserRepository,
 } from '../user/UserRepository';
 import { HttpBaseError } from '../../utils/error';
 import { SECRET, TOKEN_TTL } from '../../consts';
 import { AllowedTokenRepository, allowedTokenRepository } from './AllowedTokenRepository';
-import { UserDto } from './dto';
 
 export class UsernameBadCredentialsError extends HttpBaseError(401, 'Bad credentials') {}
 
@@ -53,6 +53,6 @@ function generateAccessToken(foundUser: UserEntity) {
 }
 
 export const authorizationService = new AuthorizationService(
-  userRepository,
+  defaultUserRepository,
   allowedTokenRepository
 );

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
+
 /*
  This is just a proof of concept for whitelisting tokens that are allowed to be consumed
  This is important while using JWT tokens to restrict logged-out/banned users from using the system.

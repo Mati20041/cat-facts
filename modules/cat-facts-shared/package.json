@@ -1,0 +1,42 @@
+{
+  "name": "@cat-facts/shared",
+  "version": "0.0.1",
+  "description": "core module with shared resources",
+  "scripts": {
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "clean": "rm -fr ./dist",
+    "watch": "webpack --watch"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "./*": [
+        "dist/*"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mati20041/cat-facts"
+  },
+  "author": "Mati20041",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mati20041/cat-facts/issues"
+  },
+  "homepage": "https://github.com/Mati20041/cat-facts#readme",
+  "devDependencies": {
+    "@webpack-cli/generators": "^2.4.2",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars,unicorn/consistent-function-scoping */
+/* eslint-disable @typescript-eslint/no-unused-vars,unicorn/consistent-function-scoping,@typescript-eslint/require-await */
 import { NextFunction, Request, Response } from 'express';
 import { asyncHandler } from '../asyncHandler';
 
@@ -16,8 +16,8 @@ describe('asyncHandler', () => {
 
   it("it doesn't add any behaviour when no error", async () => {
     // Arrange
-    const handler = async (request: Request, response: Response, _next: NextFunction) => {
-      response.send('ok');
+    const handler = async (req: Request, res: Response, _next: NextFunction) => {
+      res.send('ok');
     };
     // Act
     await asyncHandler(handler)(request, response, nextMock);

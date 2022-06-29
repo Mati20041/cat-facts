@@ -1,9 +1,10 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import { AuthenticationProvider, useAuthentication, UserDto } from '../AuthenticationProvider';
-import { axiosInstance } from '../../axios/axiosInstance';
-import userEvent from '@testing-library/user-event';
 import { sign } from 'jsonwebtoken';
+import userEvent from '@testing-library/user-event';
+import { UserDto } from '@cat-facts/shared';
+import { AuthenticationProvider, useAuthentication } from '../AuthenticationProvider';
+import { axiosInstance } from '../../axios/axiosInstance';
 
 jest.mock('../../axios/axiosInstance', () => ({
   axiosInstance: {

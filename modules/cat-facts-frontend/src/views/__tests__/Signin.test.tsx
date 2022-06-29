@@ -3,7 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { AxiosError, AxiosResponse } from 'axios';
-import { useAuthentication, UserDto } from '../../providers/AuthenticationProvider';
+import { UserDto } from '@cat-facts/shared';
+import { useAuthentication } from '../../providers/AuthenticationProvider';
 import { Signin } from '../Signin';
 import { AppQueryProvider } from '../../providers/AppQueryProvider';
 

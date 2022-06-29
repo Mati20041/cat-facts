@@ -1,6 +1,6 @@
 import { ValidationError } from 'yup';
+import { UserDto } from '@cat-facts/shared';
 import { userDtoSchema } from '../validation';
-import { UserDto } from '../../../providers/AuthenticationProvider';
 
 describe('validation', () => {
   it('should show NotLoggedUser information', async () => {

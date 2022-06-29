@@ -6,7 +6,8 @@ import { useMutation } from 'react-query';
 import { AxiosError } from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
-import { useAuthentication, UserDto } from '../providers/AuthenticationProvider';
+import { UserDto } from '@cat-facts/shared';
+import { useAuthentication } from '../providers/AuthenticationProvider';
 import { routes } from '../routing';
 import {
   StyledButtonGroup,

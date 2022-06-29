@@ -1,4 +1,5 @@
-import { CatFactDto, CatService } from '../CatService';
+import { CatFactDto } from '@cat-facts/shared';
+import { CatService } from '../CatService';
 import { axiosInstance } from '../../../axios/axiosInstance';
 
 jest.mock('../../../axios/axiosInstance', () => ({

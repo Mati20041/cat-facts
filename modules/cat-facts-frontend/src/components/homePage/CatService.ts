@@ -1,22 +1,7 @@
 import { AxiosInstance } from 'axios';
+import { CatFactDto } from '@cat-facts/shared';
 import { axiosInstance } from '../../axios/axiosInstance';
 import { apiRoutes } from '../../apiRouting';
-
-export interface CatFactDto {
-  _id: string;
-  user: string;
-  source: string;
-  type: string;
-  updatedAt: string;
-  createdAt: string;
-  deleted: boolean;
-  used: boolean;
-  text: string;
-  status: {
-    verified: boolean;
-    setCount: number;
-  };
-}
 
 export class CatService {
   constructor(private client: AxiosInstance) {}

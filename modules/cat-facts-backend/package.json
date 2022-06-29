@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
+    "build": "tsc --build --clean && tsc --project tsconfig.build.json",
     "start": "node ./dist/index.js",
     "test": "jest",
     "rerun": "npm run build && npm run start",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "clean": "rm -fr ./dist",
+    "watch": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "lint": "eslint --ext .ts,.tsx,.js src",
     "lint:fix": "eslint --ext .ts,.tsx,.js src --fix"
   },
   "dependencies": {
@@ -23,7 +25,8 @@
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
-    "sequelize": "^6.21.1"
+    "sequelize": "^6.21.1",
+    "@cat-facts/shared": "*"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",

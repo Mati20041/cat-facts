@@ -1,17 +1,13 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { UserDto } from '@cat-facts/shared';
 import { axiosInstance } from '../axios/axiosInstance';
 import { apiRoutes } from '../apiRouting';
 
 export interface User {
   username: string;
   token: string;
-}
-
-export interface UserDto {
-  username: string;
-  password: string;
 }
 
 const addAuthorizationHeader = (token: string) => (config: AxiosRequestConfig) => {

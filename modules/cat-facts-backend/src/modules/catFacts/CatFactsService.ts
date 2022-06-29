@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CatFactDto } from './dto';
+import { CatFactDto } from '@cat-facts/shared';
 
 export const CAT_FACTS_URL = 'https://cat-fact.herokuapp.com/facts';
 

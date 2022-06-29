@@ -1,11 +1,11 @@
 import { constants } from 'node:http2';
 import express from 'express';
 import { checkSchema } from 'express-validator';
+import { UserDto } from '@cat-facts/shared';
 import catRouter from '../catFacts/router';
 import { asyncHandler } from '../../utils/asyncHandler';
 import { validatorMiddleware } from '../../utils/validatorMiddleware';
 import { authorizationService } from './AuthorizationService';
-import { UserDto } from './dto';
 
 const router = express.Router();
 

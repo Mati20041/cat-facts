@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorMessage } from '@hookform/error-message';
 import { useMutation } from 'react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { UserDto } from '@cat-facts/shared';
 import { routes } from '../routing';
 import {
   StyledButtonGroup,
@@ -14,7 +15,7 @@ import {
   StyledValidationError,
 } from '../components/StyledParts';
 import { userDtoSchema } from './signin/validation';
-import { useAuthentication, UserDto } from '../providers/AuthenticationProvider';
+import { useAuthentication } from '../providers/AuthenticationProvider';
 
 export const Signup = () => {
   const navigate = useNavigate();

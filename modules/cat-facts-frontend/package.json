@@ -16,7 +16,8 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "@cat-facts/shared": "*"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -42,8 +43,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
+    "clean": "rm -fr ./build",
     "lint": "eslint --ext .ts,.tsx,.js src --max-warnings=0",
     "lint:fix": "eslint --ext .ts,.tsx,.js src --fix"
   },

@@ -27,16 +27,16 @@ async function start() {
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(value: string) {
-  const port = Number.parseInt(value, 10);
+  const parsedPort = Number.parseInt(value, 10);
 
-  if (Number.isNaN(port)) {
+  if (Number.isNaN(parsedPort)) {
     // named pipe
     return value;
   }
 
-  if (port >= 0) {
+  if (parsedPort >= 0) {
     // port number
-    return port;
+    return parsedPort;
   }
 
   return false;
@@ -51,16 +51,16 @@ function onError(error: Error & { syscall?: string; code?: string }) {
     throw error;
   }
 
-  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -78,8 +78,8 @@ function onListening() {
     debug('No address');
     return;
   }
-  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  debug(`Listening on ${bind}`);
 }
 
 process.on('exit', () => {

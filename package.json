@@ -2,9 +2,28 @@
   "name": "cat-facts",
   "version": "0.0.1",
   "description": "A fullstack application consisting solution for your cat facts!",
-  "scripts": {},
+  "scripts": {
+    "start:infrastructure": "docker compose up -d",
+    "stop:infrastructure": "docker compose down -v",
+    "start:frontend": "npm start --workspace=modules/cat-facts-frontend",
+    "start:backend": "npm run rerun --workspace=modules/cat-facts-backend",
+    "test:frontend": "npm test --workspace=modules/cat-facts-frontend",
+    "test:backend": "npm test --workspace=modules/cat-facts-backend",
+    "build:frontend": "npm run build --workspace=modules/cat-facts-frontend",
+    "build:backend": "npm run build --workspace=modules/cat-facts-backend",
+    "build:shared": "npm run build --workspace=modules/cat-facts-shared",
+    "clean:frontend": "npm run clean --workspace=modules/cat-facts-frontend",
+    "clean:backend": "npm run clean --workspace=modules/cat-facts-backend",
+    "clean:shared": "npm run clean --workspace=modules/cat-facts-shared",
+    "test": "npm run test:backend && npm run test:frontend",
+    "build": "npm run build:shared && npm run build:backend && npm run build:frontend",
+    "start": "npm run build:shared && concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "clean": "npm run clean:shared && npm run clean:backend && npm run clean:frontend"
+  },
   "workspaces": [
-    "modules/*"
+    "modules/cat-facts-backend",
+    "modules/cat-facts-frontend",
+    "modules/cat-facts-shared"
   ],
   "repository": {
     "type": "git",
@@ -15,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/Mati20041/cat-facts/issues"
   },
-  "homepage": "https://github.com/Mati20041/cat-facts#readme"
+  "homepage": "https://github.com/Mati20041/cat-facts#readme",
+  "devDependencies": {
+    "concurrently": "^7.2.2"
+  }
 }
