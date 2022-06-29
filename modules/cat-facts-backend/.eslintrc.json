@@ -1,0 +1,57 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "unicorn",
+    "simple-import-sort",
+    "prettier"
+  ],
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "prettier/prettier": "warn",
+    "import/order": "warn",
+    "arrow-body-style": "warn",
+    "no-debugger": "warn",
+    "spaced-comment": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "debug",
+          "error"
+        ]
+      }
+    ],
+    "consistent-return": "off",
+    "default-case": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-underscore-dangle": "off",
+    "no-use-before-define": "off",
+    "no-void": "off",
+    "@typescript-eslint/unbound-method": "off",
+    "unicorn/no-process-exit": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/no-null": "off"
+  }
+}

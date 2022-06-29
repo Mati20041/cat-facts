@@ -1,0 +1,8 @@
+{
+  "arrowParens": "always",
+  "proseWrap": "always",
+  "printWidth": 100,
+  "endOfLine": "auto",
+  "jsxSingleQuote": false,
+  "singleQuote": true
+}

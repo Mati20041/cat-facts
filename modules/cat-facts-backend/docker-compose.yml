@@ -1,0 +1,10 @@
+services:
+  db:
+    image: "mysql:8.0.29"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: cat_facts
+    ports:
+      - 3306:3306
