@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { UserDto } from '@cat-facts/shared';
 import { routes } from '../routing';
 import {
+  StyledButton,
   StyledButtonGroup,
   StyledCard,
   StyledErrorMessage,
@@ -73,9 +74,9 @@ export const Signup = () => {
             </div>
           </StyledValidationError>
           <StyledButtonGroup>
-            <button type="submit" disabled={isLoading}>
+            <StyledButton type="submit" disabled={isLoading}>
               Sign Up
-            </button>
+            </StyledButton>
           </StyledButtonGroup>
         </>
       </StyledForm>

@@ -10,6 +10,7 @@ import { UserDto } from '@cat-facts/shared';
 import { useAuthentication } from '../providers/AuthenticationProvider';
 import { routes } from '../routing';
 import {
+  StyledButton,
   StyledButtonGroup,
   StyledCard,
   StyledErrorMessage,
@@ -63,9 +64,9 @@ export const Signin = () => {
             </div>
           </StyledValidationError>
           <StyledButtonGroup>
-            <button type="submit" disabled={isLoading}>
+            <StyledButton type="submit" disabled={isLoading}>
               Sign In
-            </button>
+            </StyledButton>
           </StyledButtonGroup>
         </>
       </StyledForm>

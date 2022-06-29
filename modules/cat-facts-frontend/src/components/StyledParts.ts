@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Colors } from '../colors';
 
 export const StyledForm = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
-  max-width: 25rem;
+  width: 25rem;
 
   & h2 {
     grid-column: span 2;
@@ -32,4 +32,15 @@ export const StyledButtonGroup = styled.div`
 export const StyledCard = styled.div`
   display: flex;
   box-shadow: ${Colors.shadow} 10px 10px 15px;
+`;
+export const cssButton = css`
+  font-weight: bold;
+  border: 1px solid ${Colors.shadow};
+  border-radius: 3px;
+  padding: 0.25rem;
+`;
+export const StyledButton = styled.button`
+  font-size: 1rem;
+  ${cssButton};
+  background-color: ${Colors.white};
 `;

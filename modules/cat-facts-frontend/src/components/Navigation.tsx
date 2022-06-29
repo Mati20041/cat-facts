@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuthentication } from '../providers/AuthenticationProvider';
 import { routes } from '../routing';
 import { Colors } from '../colors';
+import { cssButton } from './StyledParts';
 
 export const Navigation = () => {
   const { user } = useAuthentication();
@@ -43,8 +44,5 @@ const StyledNavigation = styled.nav`
 `;
 
 export const StyledNavigationLink = styled(Link)`
-  font-weight: bold;
-  border: 1px solid ${Colors.shadow};
-  border-radius: 3px;
-  padding: 2px;
+  ${cssButton};
 `;

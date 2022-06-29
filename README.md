@@ -96,6 +96,7 @@ Type your credentials and either sign in (if you have already an account) or Sig
 - [x] Use react-query for backend calls
 
 ### Out of scope
+- [ ] Theme
 - [ ] Error processing (single way of handling errors, currently console.log)
 - [ ] Csfr for signin/up pages
 - [ ] Persist token on a browser via either local storage, cookie, etc.
