@@ -3,5 +3,6 @@
   "proseWrap": "always",
   "printWidth": 100,
   "endOfLine": "auto",
-  "jsxSingleQuote": true
+  "jsxSingleQuote": false,
+  "singleQuote": true
 }

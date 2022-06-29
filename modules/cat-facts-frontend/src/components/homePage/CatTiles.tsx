@@ -5,7 +5,7 @@ import formatDate from 'date-fns/format';
 import parseDate from 'date-fns/parseISO';
 import { CatFactDto, catService } from './CatService';
 import { Spinner } from '../Spinner';
-import { StyledCard } from '../StyledCard';
+import { StyledCard } from '../StyledParts';
 
 export const CatTiles = () => {
   const { data: catFacts, isFetching } = useQuery(

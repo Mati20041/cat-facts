@@ -1,18 +1,19 @@
-import argon2 from "argon2";
-import jwt from "jsonwebtoken";
+import argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
 import {
   UserEntity,
   UsernameNotUniqueError,
   userRepository,
   UserRepository,
-} from "../user/UserRepository";
-import { HttpBaseError } from "../../utils/error";
-import { AllowedTokenRepository, allowedTokenRepository } from "./AllowedTokenRepository";
-import { UserDto } from "./dto";
+} from '../user/UserRepository';
+import { HttpBaseError } from '../../utils/error';
+import { SECRET, TOKEN_TTL } from '../../consts';
+import { AllowedTokenRepository, allowedTokenRepository } from './AllowedTokenRepository';
+import { UserDto } from './dto';
 
-export class UsernameBadCredentialsError extends HttpBaseError(401, "Bad credentials") {}
+export class UsernameBadCredentialsError extends HttpBaseError(401, 'Bad credentials') {}
 
-export class UsernameAlreadyExistsError extends HttpBaseError(409, "Username already exists") {}
+export class UsernameAlreadyExistsError extends HttpBaseError(409, 'Username already exists') {}
 
 export class AuthorizationService {
   constructor(
@@ -48,7 +49,7 @@ export class AuthorizationService {
 }
 
 function generateAccessToken(foundUser: UserEntity) {
-  return jwt.sign({ sub: foundUser.username }, "SECRET", { expiresIn: "15m" });
+  return jwt.sign({ sub: foundUser.username }, SECRET, { expiresIn: TOKEN_TTL });
 }
 
 export const authorizationService = new AuthorizationService(

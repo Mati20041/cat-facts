@@ -1,4 +1,4 @@
-import { HttpError } from "http-errors";
+import { HttpError } from 'http-errors';
 
 export const HttpBaseError = (status: number, message: string) =>
   class extends Error implements HttpError {

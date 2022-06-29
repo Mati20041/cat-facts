@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Colors } from '../colors';
 
 export const StyledForm = styled.form`
   display: grid;
@@ -11,7 +12,7 @@ export const StyledForm = styled.form`
   }
 `;
 export const StyledErrorMessage = styled.div`
-  color: red;
+  color: ${Colors.error};
   grid-column: span 2;
   margin: 1rem 0;
 `;
@@ -21,10 +22,14 @@ export const StyledValidationError = styled.span`
 
   & div {
     height: 1em;
-    color: red;
+    color: ${Colors.error};
     font-size: 10px;
   }
 `;
 export const StyledButtonGroup = styled.div`
   grid-column: span 2;
+`;
+export const StyledCard = styled.div`
+  display: flex;
+  box-shadow: ${Colors.shadow} 10px 10px 15px;
 `;

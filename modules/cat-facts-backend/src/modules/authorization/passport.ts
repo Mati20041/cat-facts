@@ -1,6 +1,7 @@
-import passport from "passport";
-import { ExtractJwt, Strategy as JwtStrategy, VerifyCallbackWithRequest } from "passport-jwt";
-import { allowedTokenRepository } from "./AllowedTokenRepository";
+import passport from 'passport';
+import { ExtractJwt, Strategy as JwtStrategy, VerifyCallbackWithRequest } from 'passport-jwt';
+import { SECRET } from '../../consts';
+import { allowedTokenRepository } from './AllowedTokenRepository';
 
 const jwtExtractor = ExtractJwt.fromAuthHeaderAsBearerToken();
 
@@ -17,7 +18,7 @@ export const verify: VerifyCallbackWithRequest = async (request, payload, done) 
 passport.use(
   new JwtStrategy(
     {
-      secretOrKey: "SECRET",
+      secretOrKey: SECRET,
       jwtFromRequest: jwtExtractor,
       passReqToCallback: true,
     },
@@ -25,4 +26,4 @@ passport.use(
   )
 );
 
-export const jwtAuthentication = passport.authenticate("jwt", { session: false });
+export const jwtAuthentication = passport.authenticate('jwt', { session: false });

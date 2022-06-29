@@ -1,12 +1,12 @@
-import axios from "axios";
-import { CAT_FACTS_URL, catFactsService } from "../CatFactsService";
+import axios from 'axios';
+import { CAT_FACTS_URL, catFactsService } from '../CatFactsService';
 
-jest.mock("axios", () => ({
+jest.mock('axios', () => ({
   get: jest.fn(),
 }));
 
-describe("CatFactsService", () => {
-  it("should work", async () => {
+describe('CatFactsService', () => {
+  it('should work', async () => {
     // Arrange
     (axios.get as jest.Mock).mockResolvedValue({ data: [] });
 

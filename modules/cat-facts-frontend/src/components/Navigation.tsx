@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useAuthentication } from '../providers/AuthenticationProvider';
 import { routes } from '../routing';
+import { Colors } from '../colors';
 
 export const Navigation = () => {
   const { user } = useAuthentication();
@@ -24,16 +25,16 @@ export const Navigation = () => {
   );
 };
 
-const StyledNavigation = styled.div`
+const StyledNavigation = styled.nav`
   position: sticky;
   top: 0;
   display: flex;
   height: 3rem;
   padding: 0 1rem;
   align-items: center;
-  border-bottom: #61dafb 2px solid;
+  border-bottom: ${Colors.navLine} 2px solid;
   justify-content: space-between;
-  background-color: azure;
+  background-color: ${Colors.navBackground};
 
   & div {
     display: flex;
@@ -43,7 +44,7 @@ const StyledNavigation = styled.div`
 
 export const StyledNavigationLink = styled(Link)`
   font-weight: bold;
-  border: 1px solid cadetblue;
+  border: 1px solid ${Colors.shadow};
   border-radius: 3px;
   padding: 2px;
 `;

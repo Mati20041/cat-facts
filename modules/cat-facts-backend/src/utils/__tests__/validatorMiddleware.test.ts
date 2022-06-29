@@ -1,13 +1,13 @@
-import { validationResult } from "express-validator";
-import { Request, Response } from "express";
-import { validatorMiddleware } from "../validatorMiddleware";
+import { validationResult } from 'express-validator';
+import { Request, Response } from 'express';
+import { validatorMiddleware } from '../validatorMiddleware';
 
-jest.mock("express-validator", () => ({
+jest.mock('express-validator', () => ({
   validationResult: jest.fn(),
 }));
 
-describe("validatorMiddleware", () => {
-  it("should proceed to next middleware when validationErrors are empty", async () => {
+describe('validatorMiddleware', () => {
+  it('should proceed to next middleware when validationErrors are empty', async () => {
     // Arrange
     const isEmptyMock = jest.fn().mockReturnValue(true);
     (validationResult as unknown as jest.Mock).mockReturnValue({ isEmpty: isEmptyMock });
@@ -22,12 +22,12 @@ describe("validatorMiddleware", () => {
     // Assert
     expect(doneMock).toHaveBeenCalled();
   });
-  it("should response with errors when validationErrors are present", async () => {
+  it('should response with errors when validationErrors are present', async () => {
     // Arrange
     const isEmptyMock = jest.fn().mockReturnValue(false);
     (validationResult as unknown as jest.Mock).mockReturnValue({
       isEmpty: isEmptyMock,
-      array: () => ["error"],
+      array: () => ['error'],
     });
 
     const statusMock = jest.fn();

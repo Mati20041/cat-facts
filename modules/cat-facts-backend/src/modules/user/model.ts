@@ -4,8 +4,8 @@ import {
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
-} from "sequelize";
-import { sequelize } from "../../sequelize/init";
+} from 'sequelize';
+import { sequelize } from '../../sequelize/init';
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
@@ -27,8 +27,8 @@ User.init(
       allowNull: false,
       validate: {
         min: {
-          args: [1],
-          msg: "Minimum 1 character required in username",
+          args: [2],
+          msg: 'Minimum 2 characters required in username',
         },
       },
     },

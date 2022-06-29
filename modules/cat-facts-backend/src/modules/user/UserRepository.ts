@@ -1,5 +1,5 @@
-import { UniqueConstraintError } from "sequelize";
-import { User } from "./model";
+import { UniqueConstraintError } from 'sequelize';
+import { User } from './model';
 
 export interface UserEntity {
   id?: number;
@@ -26,7 +26,7 @@ export class ORMUserRepository implements UserRepository {
     } catch (error) {
       if (
         error instanceof UniqueConstraintError &&
-        error.errors.some(({ path }) => path === "username")
+        error.errors.some(({ path }) => path === 'username')
       ) {
         throw new UsernameNotUniqueError(userEntity.username);
       }

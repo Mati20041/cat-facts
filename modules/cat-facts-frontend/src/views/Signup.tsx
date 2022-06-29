@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorMessage } from '@hookform/error-message';
 import { useMutation } from 'react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { StyledCard } from '../components/StyledCard';
 import { routes } from '../routing';
 import {
   StyledButtonGroup,
+  StyledCard,
   StyledErrorMessage,
   StyledForm,
   StyledValidationError,
-} from './signin/StyledParts';
+} from '../components/StyledParts';
 import { userDtoSchema } from './signin/validation';
 import { useAuthentication, UserDto } from '../providers/AuthenticationProvider';
 

@@ -1,5 +1,5 @@
-import { RequestHandler } from "express";
-import { validationResult } from "express-validator";
+import { RequestHandler } from 'express';
+import { validationResult } from 'express-validator';
 
 export const validatorMiddleware: RequestHandler = (request, response, next) => {
   const validationErrors = validationResult(request);

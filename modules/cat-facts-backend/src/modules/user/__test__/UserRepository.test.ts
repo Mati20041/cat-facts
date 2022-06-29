@@ -1,19 +1,19 @@
-import { UniqueConstraintError, ValidationErrorItem } from "sequelize";
-import { UserEntity, UsernameNotUniqueError, userRepository } from "../UserRepository";
-import { User } from "../model";
+import { UniqueConstraintError, ValidationErrorItem } from 'sequelize';
+import { UserEntity, UsernameNotUniqueError, userRepository } from '../UserRepository';
+import { User } from '../model';
 
-const USER_ENTITY: UserEntity = { username: "user", hash: "hash" };
+const USER_ENTITY: UserEntity = { username: 'user', hash: 'hash' };
 
-jest.mock("../model", () => ({
+jest.mock('../model', () => ({
   User: {
     create: jest.fn(),
     findOne: jest.fn(),
   },
 }));
 
-describe("UserRepository", () => {
-  describe("user creation", () => {
-    it("should create a user", async () => {
+describe('UserRepository', () => {
+  describe('user creation', () => {
+    it('should create a user', async () => {
       // Arrange & Act
       await userRepository.createUser(USER_ENTITY);
 
@@ -24,10 +24,10 @@ describe("UserRepository", () => {
       });
     });
 
-    it("throws UsernameNotUniqueError when UniqueConstraintError is thrown", async () => {
+    it('throws UsernameNotUniqueError when UniqueConstraintError is thrown', async () => {
       // Arrange
       (User.create as jest.Mock).mockRejectedValue(
-        new UniqueConstraintError({ errors: [{ path: "username" } as ValidationErrorItem] })
+        new UniqueConstraintError({ errors: [{ path: 'username' } as ValidationErrorItem] })
       );
       // Act
       await expect(userRepository.createUser(USER_ENTITY)).rejects.toThrow(UsernameNotUniqueError);
@@ -39,9 +39,9 @@ describe("UserRepository", () => {
       });
     });
 
-    it("throws same error if unknown error was thrown", async () => {
+    it('throws same error if unknown error was thrown', async () => {
       // Arrange
-      (User.create as jest.Mock).mockRejectedValue(new Error("not ok"));
+      (User.create as jest.Mock).mockRejectedValue(new Error('not ok'));
       // Act
       await expect(userRepository.createUser(USER_ENTITY)).rejects.toThrow(Error);
 
@@ -53,8 +53,8 @@ describe("UserRepository", () => {
     });
   });
 
-  describe("user finding", () => {
-    it("should find user", async () => {
+  describe('user finding', () => {
+    it('should find user', async () => {
       // Arrange
       (User.findOne as jest.Mock).mockReturnValue({
         hash: USER_ENTITY.hash,
@@ -68,7 +68,7 @@ describe("UserRepository", () => {
       expect(foundUser).toEqual({ ...USER_ENTITY, id: undefined });
     });
 
-    it("should find user", async () => {
+    it('should find user', async () => {
       // Arrange
       (User.findOne as jest.Mock).mockReturnValue(null);
 

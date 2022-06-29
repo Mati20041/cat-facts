@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { axiosInstance } from '../../axios/axiosInstance';
+import { apiRoutes } from '../../apiRouting';
 
 export interface CatFactDto {
   _id: string;
@@ -21,7 +22,7 @@ export class CatService {
   constructor(private client: AxiosInstance) {}
 
   async fetchCatData() {
-    const { data } = await this.client.get<CatFactDto[]>('/users/fetch_data');
+    const { data } = await this.client.get<CatFactDto[]>(apiRoutes.fetchData);
     return data;
   }
 }

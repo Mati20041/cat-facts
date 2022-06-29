@@ -1,14 +1,14 @@
 {
-  "name": "express-tutorial",
+  "name": "@cat-facts/backend",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "start": "node ./dist/index.js",
+    "test": "jest",
     "rerun": "npm run build && npm run start",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "lint:fix": "eslint --ext .ts,.tsx,.js src --fix",
-    "test": "jest"
+    "lint:fix": "eslint --ext .ts,.tsx,.js src --fix"
   },
   "dependencies": {
     "argon2": "^0.28.5",

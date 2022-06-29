@@ -6,15 +6,15 @@ import { useMutation } from 'react-query';
 import { AxiosError } from 'axios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
-import { StyledCard } from '../components/StyledCard';
 import { useAuthentication, UserDto } from '../providers/AuthenticationProvider';
 import { routes } from '../routing';
 import {
   StyledButtonGroup,
+  StyledCard,
   StyledErrorMessage,
   StyledForm,
   StyledValidationError,
-} from './signin/StyledParts';
+} from '../components/StyledParts';
 import { userDtoSchema } from './signin/validation';
 
 export const Signin = () => {
@@ -32,7 +32,7 @@ export const Signin = () => {
     error,
     isLoading,
   } = useMutation(authenticationService.signin.bind(authenticationService), {
-    onSuccess: (token) => {
+    onSuccess: () => {
       navigate(routes.home);
     },
     onError: (err) => {

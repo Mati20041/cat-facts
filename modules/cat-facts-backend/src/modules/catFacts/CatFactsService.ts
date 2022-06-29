@@ -1,7 +1,7 @@
-import axios from "axios";
-import { CatFactDto } from "./dto";
+import axios from 'axios';
+import { CatFactDto } from './dto';
 
-export const CAT_FACTS_URL = "https://cat-fact.herokuapp.com/facts";
+export const CAT_FACTS_URL = 'https://cat-fact.herokuapp.com/facts';
 
 export class CatFactsService {
   async getFacts() {

@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import React from 'react';
-import { StyledCard } from '../StyledCard';
 import { StyledNavigationLink } from '../Navigation';
+import { StyledCard } from '../StyledParts';
+import { routes } from '../../routing';
 
 export const NotLoggedUser = () => (
   <StyledHomePage>
     <p>Sorry, you need to be authenticated to see Cat Facts 😿</p>
     <p>
-      🐈 Please go to <StyledNavigationLink to="/signin">Signin</StyledNavigationLink> or{' '}
-      <StyledNavigationLink to="/signin">Signup</StyledNavigationLink> page 🐈‍⬛
+      🐈 Please go to <StyledNavigationLink to={routes.signin}>Signin</StyledNavigationLink> or{' '}
+      <StyledNavigationLink to={routes.signup}>Signup</StyledNavigationLink> page 🐈‍⬛
     </p>
   </StyledHomePage>
 );
