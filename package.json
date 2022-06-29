@@ -1,0 +1,19 @@
+{
+  "name": "cat-facts",
+  "version": "0.0.1",
+  "description": "A fullstack application consisting solution for your cat facts!",
+  "scripts": {},
+  "workspaces": [
+    "modules/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mati20041/cat-facts"
+  },
+  "author": "Mati20041",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mati20041/cat-facts/issues"
+  },
+  "homepage": "https://github.com/Mati20041/cat-facts#readme"
+}
