@@ -103,6 +103,7 @@ Type your credentials and either sign in (if you have already an account) or Sig
 - [ ] Logout (currently by refresh)
 - [ ] Create custom hooks to not call use query
 - [ ] Customizable backend endpoint
+- [ ] Refreshing JWT token
 - [ ] e2e
 
 ## License
