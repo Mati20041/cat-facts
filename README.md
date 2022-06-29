@@ -77,11 +77,11 @@ Type your credentials and either sign in (if you have already an account) or Sig
 - [x] add dto validation
 - [x] add database connection
 - [x] add monorepo to share dtos between the frontend and the backend
+- [x] add dotenv for SECRET and etc.
 
 ### Out of scope
 - [ ] add controllers-class pattern
 - [ ] add class-validator
-- [ ] add dotenv for SECRET and etc.
 - [ ] add redis for allowed tokens repository
 - [ ] add webpack for building
 - [ ] e2e
