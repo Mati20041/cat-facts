@@ -143,6 +143,7 @@ describe('AuthorizationRoute', () => {
         // Act & Assert
         await request(app).post(CREATE_USER).send(user).expect(StatusCodes.BAD_REQUEST);
       });
+
       it('should return BAD_REQUEST on signin wrong user', async () => {
         // Arrange
         const user: UserDto = {
@@ -167,6 +168,7 @@ describe('AuthorizationRoute', () => {
         // Assert
         expect(extractErrorMessages(result)).toEqual([]);
       });
+
       it('fails on user without a username', async () => {
         // Arrange
         const user: UserDto = {
