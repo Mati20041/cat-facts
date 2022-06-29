@@ -2,7 +2,8 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { useAuthentication, UserDto } from '../../providers/AuthenticationProvider';
+import { UserDto } from '@cat-facts/shared';
+import { useAuthentication } from '../../providers/AuthenticationProvider';
 import { AppQueryProvider } from '../../providers/AppQueryProvider';
 import { Signup } from '../Signup';
 
@@ -26,7 +27,7 @@ const navigateMock = jest.fn();
 
 describe('Signup', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.spyOn(console, 'error').mockImplementation();
     (useNavigate as jest.Mock).mockReturnValue(navigateMock);
     (useAuthentication as jest.Mock).mockReturnValue({
       authenticationService: {
@@ -34,6 +35,10 @@ describe('Signup', () => {
         signin: signupMock,
       },
     });
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('should signup', async () => {
@@ -82,7 +87,6 @@ describe('Signup', () => {
 
   it('should show generic error message if unknown error was thrown', async () => {
     // Arrange
-    jest.spyOn(console, 'error').mockImplementation();
     const error = new Error('ok');
     signupMock.mockRejectedValue(error);
 

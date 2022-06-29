@@ -3,6 +3,7 @@ import express from 'express';
 import logger from 'morgan';
 import './models';
 import './modules/authorization/passport';
+import { StatusCodes } from 'http-status-codes';
 import rootRouter from './rootRouter';
 import { mainErrorHandler } from './mainErrorHandler';
 
@@ -16,7 +17,7 @@ app.use(rootRouter);
 
 // catch 404 and forward to error handler
 app.use((_request, _response, next) => {
-  next(createError(404));
+  next(createError(StatusCodes.NOT_FOUND));
 });
 
 // error handler

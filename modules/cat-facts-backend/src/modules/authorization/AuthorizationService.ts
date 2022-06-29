@@ -1,6 +1,7 @@
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import { UserDto } from '@cat-facts/shared';
+import { StatusCodes } from 'http-status-codes';
 import {
   UserEntity,
   UsernameNotUniqueError,
@@ -11,9 +12,15 @@ import { HttpBaseError } from '../../utils/error';
 import { SECRET, TOKEN_TTL } from '../../consts';
 import { AllowedTokenRepository, allowedTokenRepository } from './AllowedTokenRepository';
 
-export class UsernameBadCredentialsError extends HttpBaseError(401, 'Bad credentials') {}
+export class UsernameBadCredentialsError extends HttpBaseError(
+  StatusCodes.UNAUTHORIZED,
+  'Bad credentials'
+) {}
 
-export class UsernameAlreadyExistsError extends HttpBaseError(409, 'Username already exists') {}
+export class UsernameAlreadyExistsError extends HttpBaseError(
+  StatusCodes.CONFLICT,
+  'Username already exists'
+) {}
 
 export class AuthorizationService {
   constructor(

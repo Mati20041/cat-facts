@@ -26,13 +26,17 @@ const navigateMock = jest.fn();
 
 describe('Signin', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.spyOn(console, 'error').mockImplementation();
     (useNavigate as jest.Mock).mockReturnValue(navigateMock);
     (useAuthentication as jest.Mock).mockReturnValue({
       authenticationService: {
         signin: signinMock,
       },
     });
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('should sign in', async () => {
@@ -80,7 +84,6 @@ describe('Signin', () => {
 
   it('should show wrong credentials text when error is 401', async () => {
     // Arrange
-    jest.spyOn(console, 'error').mockImplementation();
     const axiosError = new AxiosError('', '', {}, {}, { status: 401 } as AxiosResponse);
     signinMock.mockRejectedValue(axiosError);
 

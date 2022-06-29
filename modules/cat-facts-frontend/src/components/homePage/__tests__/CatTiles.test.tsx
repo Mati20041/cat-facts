@@ -15,9 +15,9 @@ describe('CatTiles', () => {
     jest.spyOn(console, 'error').mockImplementation();
   });
 
-  // afterEach(() => {
-  //   jest.resetAllMocks();
-  // });
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
 
   it('should show spinner while fetching', () => {
     // Arrange

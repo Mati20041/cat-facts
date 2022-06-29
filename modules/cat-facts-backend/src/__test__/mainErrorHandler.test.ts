@@ -1,5 +1,6 @@
 import { Request } from 'express';
 import { createResponse } from 'node-mocks-http';
+import { StatusCodes } from 'http-status-codes';
 import { HttpBaseError } from '../utils/error';
 import { mainErrorHandler } from '../mainErrorHandler';
 
@@ -37,7 +38,7 @@ describe('mainErrorHandler', () => {
     mainErrorHandler(error, {} as Request, response, nextMock);
 
     // Assert
-    expect(response._getStatusCode()).toEqual(500);
+    expect(response._getStatusCode()).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(response._getData()).toEqual({ error: error.message });
     expect(console.error).toHaveBeenCalledWith(error);
   });
@@ -52,7 +53,7 @@ describe('mainErrorHandler', () => {
     mainErrorHandler(error, {} as Request, response, nextMock);
 
     // Assert
-    expect(response._getStatusCode()).toEqual(500);
+    expect(response._getStatusCode()).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(response._getData()).toEqual({ error: 'Internal Server Error' });
     expect(console.error).toHaveBeenCalledWith(error);
   });

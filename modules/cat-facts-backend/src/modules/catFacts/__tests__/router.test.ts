@@ -2,6 +2,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import request from 'supertest';
 import { sign } from 'jsonwebtoken';
+import { StatusCodes } from 'http-status-codes';
 import catRouter from '../router';
 import { catFactsService } from '../CatFactsService';
 import { allowedTokenRepository } from '../../authorization/AllowedTokenRepository';
@@ -30,7 +31,7 @@ const app = express();
 app.use(catRouter);
 app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   catchError(err);
-  res.status(500).send('error');
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('error');
 });
 
 const CAT_FACTS = [{ text: 'hello' }];
@@ -49,7 +50,11 @@ describe('CatFactsRoute', () => {
     const token = sign({}, SECRET);
 
     // Act & Assert
-    await request(app).get(FETCH_URL).auth(token, { type: 'bearer' }).expect(200).expect(CAT_FACTS);
+    await request(app)
+      .get(FETCH_URL)
+      .auth(token, { type: 'bearer' })
+      .expect(StatusCodes.OK)
+      .expect(CAT_FACTS);
   });
 
   describe('Error', () => {
@@ -61,7 +66,10 @@ describe('CatFactsRoute', () => {
       const token = sign({}, SECRET);
 
       // Act & Assert
-      await request(app).get(FETCH_URL).auth(token, { type: 'bearer' }).expect(500);
+      await request(app)
+        .get(FETCH_URL)
+        .auth(token, { type: 'bearer' })
+        .expect(StatusCodes.INTERNAL_SERVER_ERROR);
       expect(catchError).toHaveBeenCalledWith(error);
     });
   });
@@ -74,7 +82,10 @@ describe('CatFactsRoute', () => {
       const token = sign({}, SECRET);
 
       // Act & Assert
-      await request(app).get(FETCH_URL).auth(token, { type: 'bearer' }).expect(401);
+      await request(app)
+        .get(FETCH_URL)
+        .auth(token, { type: 'bearer' })
+        .expect(StatusCodes.UNAUTHORIZED);
     });
 
     it('should return UNAUTHORIZED work if token is not valid', async () => {
@@ -84,7 +95,10 @@ describe('CatFactsRoute', () => {
       const token = sign({}, 'OTHER_SECRET');
 
       // Act & Assert
-      await request(app).get(FETCH_URL).auth(token, { type: 'bearer' }).expect(401);
+      await request(app)
+        .get(FETCH_URL)
+        .auth(token, { type: 'bearer' })
+        .expect(StatusCodes.UNAUTHORIZED);
     });
 
     it('should return UNAUTHORIZED work if token is not present', async () => {
@@ -93,7 +107,7 @@ describe('CatFactsRoute', () => {
       (allowedTokenRepository.isTokenAllowed as jest.Mock).mockResolvedValue(false);
 
       // Act & Assert
-      await request(app).get(FETCH_URL).expect(401);
+      await request(app).get(FETCH_URL).expect(StatusCodes.UNAUTHORIZED);
     });
   });
 });

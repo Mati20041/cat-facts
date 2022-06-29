@@ -6,6 +6,7 @@ import { UserDto } from '@cat-facts/shared';
 import { ReadonlyContext } from 'express-validator/src/context';
 import { createRequest } from 'node-mocks-http';
 import argon2 from 'argon2';
+import { StatusCodes } from 'http-status-codes';
 import { UsernameAlreadyExistsError } from '../AuthorizationService';
 import { UsernameNotUniqueError, userRepository } from '../../user/UserRepository';
 import authorizationRouter, { userValidator } from '../router';
@@ -61,7 +62,7 @@ describe('AuthorizationRoute', () => {
   describe('user creation', () => {
     it('should create a user', async () => {
       // Arrange & Act & Assert
-      await request(app).post(CREATE_USER).send(NEW_USER).expect(201);
+      await request(app).post(CREATE_USER).send(NEW_USER).expect(StatusCodes.CREATED);
       expect(userRepository.createUser).toHaveBeenCalledWith({
         username: NEW_USER.username,
         hash: expect.any(String),
@@ -74,7 +75,7 @@ describe('AuthorizationRoute', () => {
         new UsernameNotUniqueError(NEW_USER.username)
       );
       // Act & Assert
-      await request(app).post(CREATE_USER).send(NEW_USER).expect(409);
+      await request(app).post(CREATE_USER).send(NEW_USER).expect(StatusCodes.CONFLICT);
       expect(catchError).toHaveBeenCalledWith(new UsernameAlreadyExistsError());
     });
 
@@ -83,7 +84,7 @@ describe('AuthorizationRoute', () => {
       const error = new Error('oh noes');
       (userRepository.createUser as jest.Mock).mockRejectedValue(error);
       // Act & Assert
-      await request(app).post(CREATE_USER).send(NEW_USER).expect(500);
+      await request(app).post(CREATE_USER).send(NEW_USER).expect(StatusCodes.INTERNAL_SERVER_ERROR);
       expect(catchError).toHaveBeenCalledWith(error);
     });
   });
@@ -101,7 +102,7 @@ describe('AuthorizationRoute', () => {
       await request(app)
         .post(LOGIN_USER)
         .send(NEW_USER)
-        .expect(200)
+        .expect(StatusCodes.OK)
         .expect((res) => {
           expect(res.body.access_token).toBeDefined();
           const data = decode(res.body.access_token);
@@ -114,7 +115,7 @@ describe('AuthorizationRoute', () => {
       (userRepository.findUserByName as jest.Mock).mockResolvedValue(null);
 
       // Act & Assert
-      await request(app).post(LOGIN_USER).send(NEW_USER).expect(401);
+      await request(app).post(LOGIN_USER).send(NEW_USER).expect(StatusCodes.UNAUTHORIZED);
     });
 
     it('should return UNATHORIZED when password is not correct', async () => {
@@ -126,7 +127,7 @@ describe('AuthorizationRoute', () => {
       });
 
       // Act & Assert
-      await request(app).post(LOGIN_USER).send(NEW_USER).expect(401);
+      await request(app).post(LOGIN_USER).send(NEW_USER).expect(StatusCodes.UNAUTHORIZED);
     });
   });
 
@@ -140,7 +141,7 @@ describe('AuthorizationRoute', () => {
         };
 
         // Act & Assert
-        await request(app).post(CREATE_USER).send(user).expect(400);
+        await request(app).post(CREATE_USER).send(user).expect(StatusCodes.BAD_REQUEST);
       });
       it('should return BAD_REQUEST on signin wrong user', async () => {
         // Arrange
@@ -150,7 +151,7 @@ describe('AuthorizationRoute', () => {
         };
 
         // Act & Assert
-        await request(app).post(LOGIN_USER).type('json').send(user).expect(400);
+        await request(app).post(LOGIN_USER).type('json').send(user).expect(StatusCodes.BAD_REQUEST);
       });
     });
 

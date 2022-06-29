@@ -1,7 +1,7 @@
-import { constants } from 'node:http2';
 import express from 'express';
 import { checkSchema } from 'express-validator';
 import { UserDto } from '@cat-facts/shared';
+import { StatusCodes } from 'http-status-codes';
 import catRouter from '../catFacts/router';
 import { asyncHandler } from '../../utils/asyncHandler';
 import { validatorMiddleware } from '../../utils/validatorMiddleware';
@@ -45,7 +45,7 @@ router.post(
   asyncHandler(async (request, response) => {
     const userDto: UserDto = request.body;
     await authorizationService.createUser(userDto);
-    response.status(constants.HTTP_STATUS_CREATED).send('User created');
+    response.status(StatusCodes.CREATED).send('User created');
   })
 );
 
