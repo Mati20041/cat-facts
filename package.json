@@ -15,7 +15,7 @@
     "clean:frontend": "npm run clean --workspace=modules/cat-facts-frontend",
     "clean:backend": "npm run clean --workspace=modules/cat-facts-backend",
     "clean:shared": "npm run clean --workspace=modules/cat-facts-shared",
-    "test": "npm run test:backend && npm run test:frontend",
+    "test": "npm run build:shared && npm run test:backend && npm run test:frontend",
     "build": "npm run build:shared && npm run build:backend && npm run build:frontend",
     "start": "npm run build:shared && concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "clean": "npm run clean:shared && npm run clean:backend && npm run clean:frontend"
