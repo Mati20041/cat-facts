@@ -5,6 +5,11 @@ import { AllowedTokenRepository } from '../AllowedTokenRepository';
 
 const USER_DTO = { username: 'TestUser', password: 'TestPassword' };
 
+jest.mock('../../../consts', () => ({
+  SECRET: 'SECRET',
+  TOKEN_TTL: '15m',
+}));
+
 const userRepository: UserRepository = {
   findUserByName: jest.fn(),
   createUser: jest.fn(),

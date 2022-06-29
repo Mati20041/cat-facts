@@ -3,6 +3,11 @@ import { ExtractJwt } from 'passport-jwt';
 import { verify } from '../passport';
 import { allowedTokenRepository } from '../AllowedTokenRepository';
 
+jest.mock('../../../consts', () => ({
+  SECRET: 'SECRET',
+  TOKEN_TTL: '15m',
+}));
+
 jest.mock('passport-jwt', () => ({
   ...jest.requireActual('passport-jwt'),
   ExtractJwt: {
