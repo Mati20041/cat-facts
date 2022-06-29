@@ -20,20 +20,23 @@ const USER_DTO: UserDto = {
   password: 'Password',
 };
 
+const signinMock = jest.fn();
+const navigateMock = jest.fn();
+
 describe('Signin', () => {
   beforeEach(() => {
     jest.resetAllMocks();
-    (useNavigate as jest.Mock).mockReturnValue(jest.fn());
+    (useNavigate as jest.Mock).mockReturnValue(navigateMock);
     (useAuthentication as jest.Mock).mockReturnValue({
       authenticationService: {
-        signin: jest.fn(),
+        signin: signinMock,
       },
     });
   });
 
   it('should sign in', async () => {
     // Arrange
-    (useAuthentication().authenticationService.signin as jest.Mock).mockResolvedValue(null);
+    signinMock.mockResolvedValue(null);
 
     // Act
     const { signin } = renderSignin();
@@ -41,16 +44,14 @@ describe('Signin', () => {
 
     // Assert
     await waitFor(() => {
-      expect(useNavigate()).toHaveBeenCalled();
+      expect(navigateMock).toHaveBeenCalled();
     });
     expect(useAuthentication().authenticationService.signin).toHaveBeenCalledWith(USER_DTO);
   });
 
   it('should disable button while waiting for signing', async () => {
     // Arrange
-    (useAuthentication().authenticationService.signin as jest.Mock).mockReturnValue(
-      new Promise(() => {})
-    );
+    signinMock.mockReturnValue(new Promise(() => {}));
 
     // Act
     const { signin, submitButton } = renderSignin();
@@ -64,10 +65,10 @@ describe('Signin', () => {
 
   it('should show validation error', async () => {
     // Arrange
-    (useAuthentication().authenticationService.signin as jest.Mock).mockResolvedValue(null);
+    signinMock.mockResolvedValue(null);
 
     // Act
-    const {submitButton} = renderSignin();
+    const { submitButton } = renderSignin();
 
     userEvent.click(submitButton);
 
@@ -80,7 +81,7 @@ describe('Signin', () => {
     // Arrange
     jest.spyOn(console, 'error').mockImplementation();
     const axiosError = new AxiosError('', '', {}, {}, { status: 401 } as AxiosResponse);
-    (useAuthentication().authenticationService.signin as jest.Mock).mockRejectedValue(axiosError);
+    signinMock.mockRejectedValue(axiosError);
 
     // Act
     const { signin } = renderSignin();
@@ -98,7 +99,7 @@ describe('Signin', () => {
     // Arrange
     jest.spyOn(console, 'error').mockImplementation();
     const error = new Error('ok');
-    (useAuthentication().authenticationService.signin as jest.Mock).mockRejectedValue(error);
+    signinMock.mockRejectedValue(error);
 
     // Act
     const { signin } = renderSignin();

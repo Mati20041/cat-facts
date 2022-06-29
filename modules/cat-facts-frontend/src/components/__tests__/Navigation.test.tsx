@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import { useAuthentication } from '../../providers/AuthenticationProvider';
 import { Navigation } from '../Navigation';
-import { BrowserRouter } from 'react-router-dom';
 
 jest.mock('../../providers/AuthenticationProvider', () => ({
   useAuthentication: jest.fn(),

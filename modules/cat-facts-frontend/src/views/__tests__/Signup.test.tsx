@@ -19,21 +19,26 @@ const USER_DTO: UserDto = {
   password: 'Password',
 };
 
+const signinMock = jest.fn();
+const signupMock = jest.fn();
+
+const navigateMock = jest.fn();
+
 describe('Signup', () => {
   beforeEach(() => {
     jest.resetAllMocks();
-    (useNavigate as jest.Mock).mockReturnValue(jest.fn());
+    (useNavigate as jest.Mock).mockReturnValue(navigateMock);
     (useAuthentication as jest.Mock).mockReturnValue({
       authenticationService: {
-        signup: jest.fn(),
-        signin: jest.fn(),
+        signup: signinMock,
+        signin: signupMock,
       },
     });
   });
 
   it('should signup', async () => {
     // Arrange
-    (useAuthentication().authenticationService.signup as jest.Mock).mockResolvedValue(null);
+    signupMock.mockResolvedValue(null);
 
     // Act
     const { signup } = renderSignup();
@@ -41,17 +46,15 @@ describe('Signup', () => {
 
     // Assert
     await waitFor(() => {
-      expect(useNavigate()).toHaveBeenCalled();
+      expect(navigateMock).toHaveBeenCalled();
     });
-    expect(useAuthentication().authenticationService.signup).toHaveBeenCalledWith(USER_DTO);
-    expect(useAuthentication().authenticationService.signin).toHaveBeenCalledWith(USER_DTO);
+    expect(signupMock).toHaveBeenCalledWith(USER_DTO);
+    expect(signinMock).toHaveBeenCalledWith(USER_DTO);
   });
 
   it('should disable button while waiting for signup', async () => {
     // Arrange
-    (useAuthentication().authenticationService.signup as jest.Mock).mockReturnValue(
-      new Promise(() => {})
-    );
+    signupMock.mockReturnValue(new Promise(() => {}));
 
     // Act
     const { signup, submitButton } = renderSignup();
@@ -65,7 +68,7 @@ describe('Signup', () => {
 
   it('should show validation error', async () => {
     // Arrange
-    (useAuthentication().authenticationService.signup as jest.Mock).mockResolvedValue(null);
+    signupMock.mockResolvedValue(null);
 
     // Act
     const { submitButton } = renderSignup();
@@ -81,7 +84,7 @@ describe('Signup', () => {
     // Arrange
     jest.spyOn(console, 'error').mockImplementation();
     const error = new Error('ok');
-    (useAuthentication().authenticationService.signup as jest.Mock).mockRejectedValue(error);
+    signupMock.mockRejectedValue(error);
 
     // Act
     const { signup } = renderSignup();

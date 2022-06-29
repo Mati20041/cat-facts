@@ -7,9 +7,11 @@ import { CatFactDto, catService } from './CatService';
 import { Spinner } from '../Spinner';
 import { StyledCard } from '../StyledParts';
 
+const catsQueryKey = 'cats';
+
 export const CatTiles = () => {
   const { data: catFacts, isFetching } = useQuery(
-    'cats',
+    catsQueryKey,
     catService.fetchCatData.bind(catService),
     {
       onError: (err) => {
