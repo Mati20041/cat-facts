@@ -1,38 +1,14 @@
-Cat Facts
-=================
+@cat-facts/backend
+============
 
-A fullstack application for reading cat facts 🐱
+Backend module shared between backend and frontend.
 
-# Used stack
+Backend works on port `3000`.
 
-### Backend
-- Express.js
-- passport-jwt for authorization
+Build `@cat-facts/shared` before backend start.
 
-### Frontend
-- React
-- react-query
-- react-router-dom
-- styled-components
-
-# Todo List
-- [x] Scaffold project
-- [x] add eslint and prettier
-- [x] create user resource
-- [x] implement jwt signup
-- [x] add `fetch_data` resource
-- [x] use passport for jwt verification
-- [x] add business logic errors
-- [x] add dto validation
-- [x] add database connection
-- [ ] add controllers-class pattern
-- [ ] add class-validator
-- [ ] add dotenv for SECRET and etc.
-- [ ] add redis for allowed tokens repository
-- [ ] add webpack for building
-- [ ] frontend (todo to split)
-
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+```
+npm install
+npm run build
+npm run start
+```
