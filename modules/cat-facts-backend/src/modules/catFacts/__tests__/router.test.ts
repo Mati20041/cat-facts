@@ -36,7 +36,7 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
 const CAT_FACTS = [{ text: 'hello' }];
 
 const FETCH_URL = '/fetch_data';
-describe('CatFactsService', () => {
+describe('CatFactsRoute', () => {
   beforeEach(() => {});
   afterEach(() => {
     jest.resetAllMocks();
