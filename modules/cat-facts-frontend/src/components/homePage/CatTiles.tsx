@@ -33,7 +33,7 @@ export const CatTiles = () => {
       {catFacts != null ? (
         catFacts.map((fact) => <CatTile key={fact._id} fact={fact} />)
       ) : (
-        <div>Error receiving cat facts</div>
+        <div>Error retrieving cat facts</div>
       )}
     </StyledTiles>
   );

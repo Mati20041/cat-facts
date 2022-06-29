@@ -40,7 +40,7 @@ describe('CatTiles', () => {
 
     // Assert
     await waitFor(() => {
-      expect(screen.getByText('Error receiving cat facts')).toBeInTheDocument();
+      expect(screen.getByText('Error retrieving cat facts')).toBeInTheDocument();
     });
     expect(console.error).toHaveBeenCalledWith('Error while fetching cat facts', error);
   });
