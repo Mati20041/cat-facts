@@ -1,9 +1,9 @@
-Chatter/Core
+@cat-facts/shared
 ============
 
 Core module shared between backend and frontend.
 
-This project has been created using **webpack-cli**, you can now run
+This project has been created using **webpack-cli**
 
 ```
 npm install
