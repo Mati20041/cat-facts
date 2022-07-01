@@ -75,7 +75,7 @@ export const Signin = () => {
 };
 
 const extractErrorMessage = (error: unknown) => {
-  return error instanceof AxiosError && error.response?.status === 401
+  return error instanceof AxiosError && (error.response?.status ?? 0) in [401, 403]
     ? 'Wrong Credentials. Please try again or contact Administrator.'
     : 'An error occurred during signing. Please try again or contact Administrator.';
 };
