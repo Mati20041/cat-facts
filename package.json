@@ -6,14 +6,14 @@
     "start:infrastructure": "docker compose up -d",
     "stop:infrastructure": "docker compose down -v",
     "start:frontend": "npm start --workspace=modules/cat-facts-frontend",
-    "start:backend": "npm run rerun --workspace=modules/cat-facts-backend",
+    "start:backend": "npm run rerun --workspace=modules/cat-facts-backend-express",
     "test:frontend": "npm test --workspace=modules/cat-facts-frontend",
-    "test:backend": "npm test --workspace=modules/cat-facts-backend",
+    "test:backend": "npm test --workspace=modules/cat-facts-backend-express",
     "build:frontend": "npm run build --workspace=modules/cat-facts-frontend",
-    "build:backend": "npm run build --workspace=modules/cat-facts-backend",
+    "build:backend": "npm run build --workspace=modules/cat-facts-backend-express",
     "build:shared": "npm run build --workspace=modules/cat-facts-shared",
     "clean:frontend": "npm run clean --workspace=modules/cat-facts-frontend",
-    "clean:backend": "npm run clean --workspace=modules/cat-facts-backend",
+    "clean:backend": "npm run clean --workspace=modules/cat-facts-backend-express",
     "clean:shared": "npm run clean --workspace=modules/cat-facts-shared",
     "test": "npm run build:shared && npm run test:backend && npm run test:frontend",
     "build": "npm run build:shared && npm run build:backend && npm run build:frontend",
@@ -21,9 +21,7 @@
     "clean": "npm run clean:shared && npm run clean:backend && npm run clean:frontend"
   },
   "workspaces": [
-    "modules/cat-facts-backend",
-    "modules/cat-facts-frontend",
-    "modules/cat-facts-shared"
+    "modules/*"
   ],
   "repository": {
     "type": "git",

@@ -2,13 +2,7 @@
   "files": [],
   "references": [
     {
-      "path": "./modules/cat-facts-shared/tsconfig.ref.json"
-    },
-    {
-      "path": "./modules/cat-facts-frontend/tsconfig.ref.json"
-    },
-    {
-      "path": "./modules/cat-facts-backend/tsconfig.ref.json"
-    },
+      "path": "./modules/*/tsconfig.ref.json"
+    }
   ],
 }
