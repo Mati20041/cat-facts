@@ -3,6 +3,14 @@ Cat Facts
 
 A fullstack application for reading cat facts 🐱
 
+This is an application written for a recruitment purpose. Description of the task:
+
+> Create a NODE.JS + EXPRESS backend service with 3 endpoints:
+> - /user/new -The purpose of this endpoint is to create and validate a new user and save it in the
+> database of your choice
+> - /user/login - The purpose of this endpoint is to authenticate an already existing user
+> - /user/fetch_data - The purpose of this endpoint is to fetch data from a public API of your choice and return the data in the response. In order to do that the user must be authenticated. Not authenticated users shall not be granted access
+
 # Start the application
 
 ## Pre-requirements
